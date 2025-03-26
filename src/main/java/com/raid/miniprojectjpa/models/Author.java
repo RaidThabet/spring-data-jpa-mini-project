@@ -11,6 +11,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 //@Table(name = "AUTHOR_TBL")
 public class Author {
