@@ -2,6 +2,7 @@ package com.raid.miniprojectjpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -10,13 +11,9 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Section {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Section extends BaseEntity {
 
     private String name;
 

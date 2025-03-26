@@ -2,9 +2,9 @@ package com.raid.miniprojectjpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,31 +13,10 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 //@Table(name = "AUTHOR_TBL")
-public class Author {
-
-    // we use Integer instead of int because when hibernate sees that this id has a null value,
-    // it will automatically generate a new id and insert a new line into our table. Otherwise, it
-    // will just fetch for an author with an id of 0, because the default value for int primitive
-    // type is 0.
-    @Id
-    @GeneratedValue
-    // if we want to specify our own way of sequence generation type
-    /*@SequenceGenerator(
-            name = "author_sequence",
-            sequenceName = "author_sequence",
-            allocationSize = 1
-    )*/
-    /*@TableGenerator(
-            name = "author_id_gen",
-            table = "id_generator",
-            pkColumnName = "id_name",
-            pkColumnValue = "id_value",
-            allocationSize = 1
-    )*/
-    private Integer id;
+public class Author extends BaseEntity{
 
     @Column(
             name = "f_name",
@@ -55,16 +34,16 @@ public class Author {
 
     private int age;
 
-    @Column(
-            updatable = false,
-            nullable = false
-    )
-    private LocalDateTime createdAt;
-
-    @Column(
-            insertable = false
-    )
-    private LocalDateTime modifiedAt;
+//    @Column(
+//            updatable = false,
+//            nullable = false
+//    )
+//    private LocalDateTime createdAt;
+//
+//    @Column(
+//            insertable = false
+//    )
+//    private LocalDateTime modifiedAt;
 
     @ManyToMany(mappedBy = "authors")
     private List<Course> courses;

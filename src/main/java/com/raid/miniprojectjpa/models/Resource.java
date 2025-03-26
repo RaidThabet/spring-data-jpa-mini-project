@@ -2,19 +2,16 @@ package com.raid.miniprojectjpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Resource {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Resource extends BaseEntity {
 
     private String name;
 
