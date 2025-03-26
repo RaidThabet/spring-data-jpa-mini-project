@@ -1,8 +1,6 @@
 package com.raid.miniprojectjpa.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -23,4 +21,8 @@ public class Resource {
     private int size;
 
     private String url;
+
+    @OneToOne
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
 }

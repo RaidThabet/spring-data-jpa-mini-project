@@ -1,9 +1,9 @@
 package com.raid.miniprojectjpa.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,5 +20,12 @@ public class Section {
 
     private String name;
 
-    private int order;
+    private int sectionOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @OneToMany(mappedBy = "section")
+    private List<Lecture> lectures;
 }

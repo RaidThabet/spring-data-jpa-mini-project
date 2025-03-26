@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -64,6 +65,9 @@ public class Author {
             insertable = false
     )
     private LocalDateTime modifiedAt;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<Course> courses;
 
     @Override
     public final boolean equals(Object o) {
