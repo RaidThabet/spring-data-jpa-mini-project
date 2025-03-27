@@ -1,7 +1,12 @@
 package com.raid.miniprojectjpa;
 
+import com.raid.miniprojectjpa.models.Video;
+import com.raid.miniprojectjpa.repositories.AuthorRepository;
+import com.raid.miniprojectjpa.repositories.VideoRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class MiniProjectJpaApplication {
@@ -10,11 +15,13 @@ public class MiniProjectJpaApplication {
         SpringApplication.run(MiniProjectJpaApplication.class, args);
     }
 
-//    @Bean
-//    public CommandLineRunner commandLineRunner(
-//        AuthorRepository repository // will be automatically injected
-//    ) {
-//        return args -> {
+
+
+    @Bean
+    public CommandLineRunner commandLineRunner(
+            AuthorRepository repository, // will be automatically injected
+            VideoRepository videoRepository) {
+        return args -> {
 //            var author = Author.builder()
 //                    .firstName("Raid")
 //                    .lastName("Thabet")
@@ -24,7 +31,13 @@ public class MiniProjectJpaApplication {
 //                    .build();
 //
 //            repository.save(author);
-//        };
-//    }
+            var video = Video.builder()
+                    .name("abc")
+                    .length(3)
+                    .build();
+
+            videoRepository.save(video);
+        };
+    }
 
 }
