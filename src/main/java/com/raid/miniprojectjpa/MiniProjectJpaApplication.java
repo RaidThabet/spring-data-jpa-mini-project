@@ -30,7 +30,7 @@ public class MiniProjectJpaApplication {
                 var author = Author.builder()
                         .firstName(faker.name().firstName())
                         .lastName(faker.name().lastName())
-                        .age(faker.number().numberBetween(18, 50))
+                        .age(faker.number().numberBetween(18, 90))
                         .email(faker.internet().emailAddress())
                         .createdAt(LocalDateTime.now())
                         .build();
@@ -54,7 +54,14 @@ public class MiniProjectJpaApplication {
             // update Author a set a.age = 20 where a.id = 1
             repository.updateAuthor(24, 1);
 
-            repository.updateAllAuthorsAges(100);
+//            repository.updateAllAuthorsAges(100);
+
+            // find by named query
+            repository.findByNamedQuery(60)
+                    .forEach(System.out::println);
+
+            // update with named query
+            repository.updateByNamedQuery(22);
 
 
 //            var video = Video.builder()
@@ -64,6 +71,8 @@ public class MiniProjectJpaApplication {
 //
 //            videoRepository.save(video);
         };
+
+
     }
 
 }

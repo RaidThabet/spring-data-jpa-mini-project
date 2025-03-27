@@ -10,13 +10,25 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 @Entity
+@NamedQueries( // we can also have them separately
+        {
+                @NamedQuery(
+                        name = "Author.findByNamedQuery",
+                        query = "select a from Author a where a.age >= :age"
+                ),
+                @NamedQuery(
+                        name = "Author.updateByNamedQuery",
+                        query = "update Author a set a.age = :age"
+                )
+        }
+)
+
 //@Table(name = "AUTHOR_TBL")
-public class Author extends BaseEntity{
+public class Author extends BaseEntity {
 
     @Column(
             name = "f_name",
@@ -62,5 +74,15 @@ public class Author extends BaseEntity{
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

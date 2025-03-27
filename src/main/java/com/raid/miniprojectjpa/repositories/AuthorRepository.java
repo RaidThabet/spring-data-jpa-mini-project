@@ -12,6 +12,14 @@ import java.util.Collection;
 import java.util.List;
 
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
+
+    @Transactional
+    List<Author> findByNamedQuery(@Param("age") int age);
+
+    @Transactional
+    @Modifying
+    void updateByNamedQuery(@Param("age") int age);
+
     @Modifying
     @Transactional
     @Query("update Author a set a.age = :age where a.id = :id")
