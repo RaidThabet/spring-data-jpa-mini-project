@@ -1,12 +1,27 @@
 package com.raid.miniprojectjpa.repositories;
 
 import com.raid.miniprojectjpa.models.Author;
+import jakarta.persistence.NamedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
 import java.util.List;
 
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
+    @Modifying
+    @Transactional
+    @Query("update Author a set a.age = :age where a.id = :id")
+    int updateAuthor(@Param("age") int age2, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query("update Author a set a.age = :age")
+    void updateAllAuthorsAges(int age);
+
     // select * from author where first_name = 'fname'
     List<Author> findAllByFirstName(String firstName);
     
@@ -23,4 +38,6 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     // select * from author where first_name in ('raid', 'thabet')
     List<Author> findAllByFirstNameInIgnoreCase(Collection<String> firstNames);
+
+
 }
