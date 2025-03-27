@@ -1,6 +1,5 @@
 package com.raid.miniprojectjpa.models;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -15,7 +14,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@DiscriminatorValue("F")
 public class File extends Resource {
 
     private String type;

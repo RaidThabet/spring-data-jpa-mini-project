@@ -1,7 +1,7 @@
 package com.raid.miniprojectjpa.models;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
@@ -15,7 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@DiscriminatorValue("V")
+@PrimaryKeyJoinColumn(name = "video_id") // if we want to give the foreign key a custom name
 public class Video extends Resource {
 
     private int length;
