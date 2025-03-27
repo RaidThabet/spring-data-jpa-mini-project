@@ -1,9 +1,10 @@
 package com.raid.miniprojectjpa.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
@@ -15,7 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@PrimaryKeyJoinColumn(name = "video_id") // if we want to give the foreign key a custom name
+@Polymorphism(type = PolymorphismType.EXPLICIT) // query this video only when we ask for it
 public class Video extends Resource {
 
     private int length;
