@@ -5,10 +5,12 @@ import com.raid.miniprojectjpa.models.Author;
 import com.raid.miniprojectjpa.models.Video;
 import com.raid.miniprojectjpa.repositories.AuthorRepository;
 import com.raid.miniprojectjpa.repositories.VideoRepository;
+import com.raid.miniprojectjpa.specification.AuthorSpecification;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;
 
@@ -35,7 +37,7 @@ public class MiniProjectJpaApplication {
                         .createdAt(LocalDateTime.now())
                         .build();
 
-                repository.save(author);
+//                repository.save(author);
 
             }
 
@@ -52,16 +54,22 @@ public class MiniProjectJpaApplication {
 
 
             // update Author a set a.age = 20 where a.id = 1
-            repository.updateAuthor(24, 1);
+//            repository.updateAuthor(24, 1);
 
 //            repository.updateAllAuthorsAges(100);
 
             // find by named query
-            repository.findByNamedQuery(60)
-                    .forEach(System.out::println);
+//            repository.findByNamedQuery(60)
+//                    .forEach(System.out::println);
 
             // update with named query
-            repository.updateByNamedQuery(22);
+//            repository.updateByNamedQuery(22);
+
+            Specification<Author> specification = Specification
+                    .where(AuthorSpecification.hasAge(22))
+                    .or(AuthorSpecification.firstNameLike("Be"));
+
+            repository.findAll(specification).forEach(System.out::println);
 
 
 //            var video = Video.builder()
